@@ -11,8 +11,8 @@ const dbIndex = config.redis.dbIndex;
 
 const setToken = (user_id, session_id) => {
     return new Promise((resolve, reject) => {
-        client_one.select(dbIndex, () => {
-            client_one.sadd(user_id, session_id, (err, res) => {
+        client.select(dbIndex, () => {
+            client.sadd(user_id, session_id, (err, res) => {
                 if (err) {
                     return reject(err);
                 }
@@ -24,8 +24,8 @@ const setToken = (user_id, session_id) => {
 
 const getUserSession = (user_id) => {
     return new Promise((resolve, reject) => {
-        client_one.select(dbIndex, () => {
-            client_one.smembers(user_id, (err, res) => {
+        client.select(dbIndex, () => {
+            client.smembers(user_id, (err, res) => {
                 if (err) {
                     return reject(err);
                 }
@@ -37,8 +37,8 @@ const getUserSession = (user_id) => {
 
 const invalidateToken = (user_id, session_id) => {
     return new Promise((resolve, reject) => {
-        client_one.select(dbIndex, () => {
-            client_one.srem(user_id, [session_id], (err, res) => {
+        client.select(dbIndex, () => {
+            client.srem(user_id, [session_id], (err, res) => {
                 if (err) {
                     return reject(err);
                 }
@@ -53,8 +53,8 @@ const invalidateUserSessions = (user_id) => {
         if (!user_id) {
             return reject(new Error('User ID cannot be empty.'));
         }
-        client_one.select(dbIndex, () => {
-            client_one.del(user_id, (err, res) => {
+        client.select(dbIndex, () => {
+            client.del(user_id, (err, res) => {
                 if (err) {
                     return reject(err);
                 }

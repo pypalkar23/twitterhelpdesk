@@ -9,19 +9,23 @@ let Schema = mongoose.Schema;
 let uuid = require('uuid');
 
 let UserSchema = new Schema({
-
     _id : {
         type : String,
         default : uuid.v4
     },
 
-    name : {
+    username : {
         type : String
     },
 
     email : {
         type : String,
-        lowercase : true
+        lowercase : true,
+        unique:true
+    },
+
+    salt:{
+        type:String
     },
 
     password : {

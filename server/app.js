@@ -47,7 +47,7 @@ redisClient.on('connect', () => {
         var server = http.createServer(app);
 
         server.listen(config.port, config.host, function () {
-            console.log('Helpdesk Started on: ' + config.port + ' HOST : ' + config.host);
+            console.log('Helpdesk server started on port: ' + config.port + ' HOST : ' + config.host);
         });
     });
 
