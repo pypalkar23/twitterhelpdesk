@@ -1,0 +1,29 @@
+{
+  "name": "twitter-helpdesk-server",
+  "version": "1.0.0",
+  "description": "Server part of the POC",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pypalkar23/twitterhelpdesk.git"
+  },
+  "keywords": [
+    "Twitter",
+    "Helpdesk"
+  ],
+  "author": "Mandar Palkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pypalkar23/twitterhelpdesk/issues"
+  },
+  "homepage": "https://github.com/pypalkar23/twitterhelpdesk#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.5.15",
+    "passport": "^0.4.0",
+    "passport-oauth": "^1.0.0"
+  }
+}
