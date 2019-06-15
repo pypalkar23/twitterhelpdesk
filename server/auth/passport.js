@@ -1,16 +1,17 @@
 const passport = require('passport');
 const passportJWT = require("passport-jwt");
-
-const ExtractJWT = passportJWT.ExtractJwt;
-
+const TwitterStrategy = require('passport-twitter').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy = passportJWT.Strategy;
-
+const ExtractJWT = passportJWT.ExtractJwt;
 const { createHash } = require('crypto');
 
 const Users = appRequire('model.user');
 const sessionManager = appRequire('session.manager');
 const config = appRequire('config');
+
+
+
 errorCodes = {
     USER_NOT_FOUND: 'USER_NOT_FOUND',
     INCORRECT_PASSWORD: 'INCORRECT_PASSWORD'
@@ -39,9 +40,9 @@ passport.use(new LocalStrategy({
             if (user.password != hashedPassword) {
                 return callback(null, false, errorCodes.INCORRECT_PASSWORD);
             }
-            
+
             return callback(null, user);
-        
+
         })
         .catch((error) => {
             console.log(error);
@@ -60,6 +61,7 @@ passport.use('jwt-auth', new JWTStrategy({
         sessionManager
             .getUserSession(payload.sub)
             .then((res) => {
+                console.log("res", res, payload);
                 if (res && res instanceof Array && (res.indexOf(payload.session_id)) !== -1) {
                     return callback(null, payload);
                 }
@@ -68,3 +70,4 @@ passport.use('jwt-auth', new JWTStrategy({
             .catch(error => callback(error));
     }
 ));
+

@@ -1,18 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { TwitterConnectComponent } from './components/twitter-connect/twitter-connect.component';
+import { ConnectService } from './services/connect.service';
+import { ConversationService } from './services/conversation.service';
+import { RequestInterceptorService } from './services/request-interceptor.service';
+import { UserService } from './services/user.service';
+import { HelpdeskComponent } from './components/helpdesk/helpdesk.component';
+import { TwitterCallbackComponent } from './components/twitter-callback/twitter-callback.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    TwitterConnectComponent,
+    HelpdeskComponent,
+    TwitterCallbackComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    ConnectService, 
+    ConversationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

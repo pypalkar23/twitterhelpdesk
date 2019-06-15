@@ -66,7 +66,7 @@ const registerUser = (req, res) => {
 const login = (req, res) => {
     console.log("In Login");
     passport.authenticate('local', { session: false }, (err, user, info) => {
-        console.log("login",user);
+        //console.log("login",user);
         if (info) {
             return res.status(200).json(ResponseUtils.responseMessage(false, errorcodes[info] || errorcodes.GENERIC));
         }
@@ -85,7 +85,7 @@ const login = (req, res) => {
                 .setToken(user._id, session_id)
                 .then(() => {
                     const token = jwt.sign({ sub: user._id, session_id, email: user.email, scope: 'user' }, config.jwt_encrypt_key, { expiresIn: '1d' });
-                    return res.status(200).json({ success: true, message: 'Login successful', user: rest, token });
+                    return res.status(200).json({ success: true, message: 'Login successful', data:{detail: rest, token} });
                 })
                 .catch((error) => {
                     console.log(error);

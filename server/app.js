@@ -18,6 +18,8 @@ let cors = require('cors');
 let app = express();
 let config = appRequire('config');
 let redisClient = appRequire('session.manager').client;
+let session = require('express-session');
+let redisStore = require('connect-redis')(session);
 
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
@@ -27,7 +29,17 @@ appRequire('passport');
 
 app.use(cors());
 
+app.use(session({
+    secret: 'ThisIsHowYouUseRedisSessionStorage',
+    name: '_redisPractice',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Note that the cookie-parser module is no longer needed
+    store: new redisStore({ client: redisClient, ttl: 86400 })
+}))
+
 require('./routes')(app);
+
 redisClient.on('connect', () => {
     console.log(`Connected to redis - HOST: ${config.redis.host}, PORT: ${config.redis.port}`);
     mongoose.connect(config.mongo.uri, {

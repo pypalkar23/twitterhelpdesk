@@ -2,7 +2,6 @@ let path = require('path');
 let environment = process.env.NODE_ENV || 'local';
 
 let config = {
-    
     root : path.normalize(__dirname + './../../'),
     
     mongo : {
