@@ -42,10 +42,16 @@ const getTweets = (req, res) => {
     const accessTokenSecret = req.body.accessTokenSecret;
     let max_id = req.body.max_id;
     const count = 50;
+    let params={
+        count
+    }
     if (max_id) {
         max_id = max_id - 1;
+        params.max_id = max_id;
     }
-    twitter.getTimeline('mentions_timeline', { count: count,max_id:max_id}, accessToken, accessTokenSecret, (err,data,result) => {
+
+    console.log(max_id);
+    twitter.getTimeline('mentions_timeline', params , accessToken, accessTokenSecret, (err,data,result) => {
         if (err) {
             return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_LIST_ERROR, err));
         }
