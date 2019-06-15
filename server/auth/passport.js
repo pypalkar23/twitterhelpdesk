@@ -61,7 +61,7 @@ passport.use('jwt-auth', new JWTStrategy({
         sessionManager
             .getUserSession(payload.sub)
             .then((res) => {
-                console.log("res", res, payload);
+                //console.log("res", res, payload);
                 if (res && res instanceof Array && (res.indexOf(payload.session_id)) !== -1) {
                     return callback(null, payload);
                 }
