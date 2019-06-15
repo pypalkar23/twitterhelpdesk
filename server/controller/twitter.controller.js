@@ -6,7 +6,8 @@ const errorCodes = {
     REQUEST_TOKEN_ERROR: 'REQUEST_TOKEN_ERROR',
     ACCESS_TOKEN_ERROR: 'ACCESS_TOKEN_ERROR',
     TWEET_LIST_ERROR: 'TWEET_LIST_ERROR',
-    TWEET_RETRIEVAL_ERROR: 'TWEET_RETRIEVAL_ERROR'
+    TWEET_RETRIEVAL_ERROR: 'TWEET_RETRIEVAL_ERROR',
+    TWEET_REPLY_ERROR: 'TWEET_REPLY_ERROR'
 }
 
 let _requestSecret;
@@ -42,7 +43,7 @@ const getTweets = (req, res) => {
     const accessTokenSecret = req.body.accessTokenSecret;
     let max_id = req.body.max_id;
     const count = 50;
-    let params={
+    let params = {
         count
     }
     if (max_id) {
@@ -51,12 +52,12 @@ const getTweets = (req, res) => {
     }
 
     console.log(max_id);
-    twitter.getTimeline('mentions_timeline', params , accessToken, accessTokenSecret, (err,data,result) => {
+    twitter.getTimeline('mentions_timeline', params, accessToken, accessTokenSecret, (err, data, result) => {
         if (err) {
             return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_LIST_ERROR, err));
         }
         //console.log(result);
-        res.json(ResponseUtils.responseSuccess({data}));
+        res.json(ResponseUtils.responseSuccess({ data }));
     })
 }
 
@@ -64,12 +65,26 @@ const getTweet = (req, res) => {
     const accessToken = req.body.accessToken;
     const accessTokenSecret = req.body.accessTokenSecret;
     const tweetId = req.body.id;
-    
+
     twitter.statuses('show', { id: tweetId, include_my_retweet: true }, accessToken, accessTokenSecret, (err, data, result) => {
         if (err) {
             return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_RETRIEVAL_ERROR, err));
         }
-        res.json(ResponseUtils.responseSuccess({ data,err }));
+        res.json(ResponseUtils.responseSuccess({ data, err }));
+    })
+}
+
+
+const sendTweet = (req, res) => {
+    const accessToken = req.body.accessToken;
+    const accessTokenSecret = req.body.accessTokenSecret;
+    const tweetId = req.body.id;
+    const status = req.body.status;
+    twitter.statuses('update', { status: status, in_reply_to_status_id: tweetId }, accessToken, accessTokenSecret, (err, data, result) => {
+        if (err) {
+            return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_REPLY_ERROR, err));
+        }
+        res.json(ResponseUtils.responseSuccess({ data, err }));
     })
 }
 
@@ -77,5 +92,6 @@ module.exports = {
     getRequestToken: getRequestToken,
     getAccessToken: getAccessToken,
     getTweets: getTweets,
-    getTweet: getTweet
+    getTweet: getTweet,
+    sendTweet: sendTweet
 }

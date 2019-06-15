@@ -5,5 +5,6 @@ Router.get('/requestToken',Controller.getRequestToken);
 Router.get('/accessToken',Controller.getAccessToken);
 Router.get('/tweets',Controller.getTweets);
 Router.get('/tweet',Controller.getTweet);
+Router.post('/tweet',Controller.sendTweet);
 
 module.exports = Router;
