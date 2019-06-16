@@ -12,7 +12,9 @@ module.exports = {
     'ctrl.sessions':'controller/sessions.controller',
 
     'model.user': 'models/user.model',
+    'model.conversation':'models/conversation.model',
 
-    'utils.response': 'utils/response.utils'
+    'utils.response': 'utils/response.utils',
+    'utils.mapper': 'utils/mapper.utils.js'
 }
 

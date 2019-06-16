@@ -1,6 +1,5 @@
 
 const { createHash } = require('crypto');
-
 const uuid = require('uuid/v4');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
