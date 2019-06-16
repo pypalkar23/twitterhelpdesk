@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TouchSequence } from 'selenium-webdriver';
-import { ThrowStmt } from '@angular/compiler';
-
 
 @Component({
   selector: 'app-login',
