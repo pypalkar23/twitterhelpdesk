@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -11,6 +12,8 @@ import { RequestInterceptorService } from './services/request-interceptor.servic
 import { UserService } from './services/user.service';
 import { HelpdeskComponent } from './components/helpdesk/helpdesk.component';
 import { TwitterCallbackComponent } from './components/twitter-callback/twitter-callback.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,10 @@ import { TwitterCallbackComponent } from './components/twitter-callback/twitter-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,

@@ -16,7 +16,7 @@ export class TwitterCallbackComponent implements OnInit {
     private router:Router) {
         this.connectService.getAccessToken(location.search).subscribe((resp)=>{
           this.userService.setTwitterDetails(resp.data.twitter_user,resp.data.accessToken,resp.data.accessSecret);
-          console.log("details set");
+          //console.log("details set");
           this.router.navigate(['/helpdesk']);
         })
      }

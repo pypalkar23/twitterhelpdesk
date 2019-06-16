@@ -11,12 +11,17 @@ export class UserService {
   public apiBase = environment.apiBase;
 
   public LOGIN_API = `${this.apiBase}/auth/user/login`;
+  public REGISTER_API = `${this.apiBase}/auth/user/register`;
   public LOGOUT_API = `${this.apiBase}/api/sessions/logout`;
 
   constructor(private http: HttpClient) { }
 
   public login(userCreds) {
     return this.http.post<any>(this.LOGIN_API, userCreds);
+  }
+
+  public register(userDetails){
+    return this.http.post<any>(this.REGISTER_API,userDetails);
   }
 
   public setAuthToken(access_token, user) {
