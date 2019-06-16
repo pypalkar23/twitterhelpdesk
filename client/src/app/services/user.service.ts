@@ -52,6 +52,6 @@ export class UserService {
   public getTwitterTokens() {
     const twitter_access_token = localStorage.getItem('twitter_access_token');
     const twitter_secret_token = localStorage.getItem('twitter_secret_token');
-    return { twitter_access_token, twitter_secret_token };
+    return { accessToken:twitter_access_token, accessTokenSecret:twitter_secret_token };
   }
 }

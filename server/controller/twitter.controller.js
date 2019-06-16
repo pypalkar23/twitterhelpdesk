@@ -118,7 +118,7 @@ const sendTweet = (req, res) => {
         conversation.push(tweet);
         Conversation.findOneAndUpdate({_id:tweetId},{$set:{conversation:conversation}},{upsert:true,new:true},(err,resp)=> {
             if(err){
-                console.log(err);
+                return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_REPLY_ERROR, err));
             }
             res.json(ResponseUtils.responseSuccess({resp}));
         })
@@ -152,14 +152,14 @@ const sendTweet = (req, res) => {
     })
 }*/
 
-const getConversation = (req, res) => {
+/*const getConversation = (req, res) => {
 
-}
+}*/
 module.exports = {
     getRequestToken: getRequestToken,
     getAccessToken: getAccessToken,
     getTweets: getTweets,
     getTweet: getTweet,
     sendTweet: sendTweet,
-    getConversation: getConversation
+    //getConversation: getConversation
 }

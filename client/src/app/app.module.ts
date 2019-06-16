@@ -14,13 +14,17 @@ import { HelpdeskComponent } from './components/helpdesk/helpdesk.component';
 import { TwitterCallbackComponent } from './components/twitter-callback/twitter-callback.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import { TweetListComponent } from './components/tweet-list/tweet-list.component';
+import { ChatWindowComponent } from './components/chat-window/chat-window.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     TwitterConnectComponent,
     HelpdeskComponent,
-    TwitterCallbackComponent
+    TwitterCallbackComponent,
+    TweetListComponent,
+    ChatWindowComponent
   ],
   imports: [
     BrowserModule,
