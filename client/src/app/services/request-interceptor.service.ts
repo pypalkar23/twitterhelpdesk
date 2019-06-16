@@ -13,8 +13,6 @@ import { map } from 'rxjs/operators';
 
 import { UserService } from './user.service';
 
-import { environment } from '../../environments/environment';
-
 const bypassURLs: Array<string> = [
 
 ];
@@ -52,6 +50,10 @@ export class RequestInterceptorService implements HttpInterceptor {
         console.log('event--->>>', event);
       }
       return event;
+    },(error:any)=>{
+      if(error.status === 401){
+        this.userService.logout();
+      }
     }));
   }
 }

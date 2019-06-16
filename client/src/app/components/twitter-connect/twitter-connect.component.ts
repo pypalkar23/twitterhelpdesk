@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectService } from '../../services/connect.service';
+import { UserService} from '../../services/user.service';
 @Component({
   selector: 'app-twitter-connect',
   templateUrl: './twitter-connect.component.html',
@@ -7,9 +8,10 @@ import { ConnectService } from '../../services/connect.service';
 })
 export class TwitterConnectComponent implements OnInit {
 
-  constructor(private connectService:ConnectService) { }
-
+  constructor(private connectService:ConnectService,private userService:UserService) { }
+  username:string
   ngOnInit() {
+    this.username= this.userService.getUsername();
   }
 
   connectToTwitter() {
@@ -19,4 +21,7 @@ export class TwitterConnectComponent implements OnInit {
     });
   }
 
+  logout(){
+    this.userService.logout();
+  }
 }

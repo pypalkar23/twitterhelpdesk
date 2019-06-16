@@ -4,6 +4,7 @@ const twitter = new Twitter(twitterAuth);
 const ResponseUtils = appRequire('utils.response');
 const MapperUtils = appRequire('utils.mapper');
 const Conversation = appRequire('model.conversation');
+const _ = require('lodash')
 
 const errorCodes = {
     REQUEST_TOKEN_ERROR: 'REQUEST_TOKEN_ERROR',
@@ -84,7 +85,8 @@ const getTweet = (req, res) => {
                 doc = result[0];
                 conversation = doc.conversation;
             }
-            conversation.push(tweet);
+            if(_.findIndex(conversation,(o)=>{return o.id==tweet.id})===-1)
+                conversation.push(tweet);
             return res.json(ResponseUtils.responseSuccess({ conversation }));
         })
     else {

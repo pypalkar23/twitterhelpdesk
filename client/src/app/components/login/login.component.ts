@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    this.userService.clearUserData();
     this.disableRegister=false;
     this.disableLogin=false;
   }

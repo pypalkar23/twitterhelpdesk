@@ -10,7 +10,7 @@ export class ConversationService {
   public apiBase = environment.apiBase;
 
   public GET_TWEETS_API = `${this.apiBase}/api/twitter/tweets`;
-  public GET_TWEET = `${this.apiBase}/api/twitter/tweet`;
+  public GET_TWEET = `${this.apiBase}/api/twitter/conversation`;
   public SEND_TWEET = `${this.apiBase}/api/twitter/tweet`;
 
 
@@ -29,7 +29,7 @@ export class ConversationService {
   }
 
   getTweet(data) {
-    return this.http.post<any>(this.GET_TWEETS_API, data);
+    return this.http.post<any>(this.GET_TWEET, {tweet:data});
   }
 
   postTweet(data) {

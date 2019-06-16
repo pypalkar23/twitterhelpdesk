@@ -16,6 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { ChatWindowComponent } from './components/chat-window/chat-window.component';
+import { LoginGuard } from './guards/login.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { ChatWindowComponent } from './components/chat-window/chat-window.compon
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptorService,
       multi: true
-    }
+    },
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

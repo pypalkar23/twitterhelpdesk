@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,11 @@ export class UserService {
   public REGISTER_API = `${this.apiBase}/auth/user/register`;
   public LOGOUT_API = `${this.apiBase}/api/sessions/logout`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router:Router) {
+    
+   }
 
+  
   public login(userCreds) {
     return this.http.post<any>(this.LOGIN_API, userCreds);
   }
@@ -31,6 +35,17 @@ export class UserService {
 
   public getAuthToken() {
     return localStorage.getItem('access_token');
+  }
+
+  public logout(){
+    this.http.get(this.LOGOUT_API).subscribe((resp)=>{
+      this.clearUserData();
+    })
+  }
+
+  public getUsername(){
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.username;
   }
 
   public getUserId() {
@@ -54,4 +69,13 @@ export class UserService {
     const twitter_secret_token = localStorage.getItem('twitter_secret_token');
     return { accessToken:twitter_access_token, accessTokenSecret:twitter_secret_token };
   }
+
+  public clearUserData(){
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('twitter_access_token');
+    localStorage.removeItem('twitter_secret_token');
+    this.router.navigate(["/login"]);
+  }
+  
 }

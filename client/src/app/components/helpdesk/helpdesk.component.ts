@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-helpdesk',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpdeskComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private userService: UserService) { }
+  username: string;
   ngOnInit() {
+    this.username = this.userService.getUsername();
   }
+
+  logout(){
+    this.userService.logout();
+  }
+
 
 }

@@ -1,3 +1,14 @@
-<p>
-  chat-window works!
-</p>
+<div>
+  <div class="conversation-window">
+    <div *ngFor="let msg of conversation">
+      <p>
+        {{msg.screen_name}}
+        {{msg.text}}
+      </p>
+    </div>
+  </div>
+  <div class="message-box">
+    <textarea [(ngModel)]="replyMessage" name="replyMessage"></textarea>
+    <button type="button" class="btn btn-primary" (click)="sendReply()">reply</button>
+  </div>
+</div>

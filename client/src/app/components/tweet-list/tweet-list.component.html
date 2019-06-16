@@ -1,8 +1,6 @@
 <div>
   <div *ngFor="let tweet of tweets" (click)="getConversation(tweet)">
-    <div>
       <p>{{tweet.screen_name}}</p>
       <p>{{tweet.text}}</p>
-    </div>
   </div>
 </div>
