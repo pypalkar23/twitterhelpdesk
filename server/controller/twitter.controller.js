@@ -60,13 +60,13 @@ const getTweets = (req, res) => {
         }
         //console.log(max_id);
         //console.log(data.length);
-        if(max_id && data.length>=1){
+        if (max_id && data.length >= 1) {
             //console.log("in max_id check");
-            data=data.splice(1,1);
+            data = data.splice(1, 1);
         }
 
         //console.log(data.length);
-        if(data.length==0)
+        if (data.length == 0)
             return res.json(ResponseUtils.responseSuccess([]));
         return res.json(ResponseUtils.responseSuccess(MapperUtils.tweetsMapper(data)));
     })
@@ -79,29 +79,31 @@ const getTweet = (req, res) => {
     //const replyToStatusId = req.body.replyToStatusId;
     const tweet = req.body.tweet;
     const reply_to_status_id = tweet.in_reply_to_status;
-    //console.log(reply_to_status_id);
-    if (reply_to_status_id)
-        Conversation.find({ _id: reply_to_status_id }, (err, result) => {
-            let conversation = []
-            if (err) {
-                return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_RETRIEVAL_ERROR, err));
-            }
-
-            if (!result || result.length == 0) {
-                conversation = [];
-            }
-            else {
-                doc = result[0];
-                conversation = doc.conversation;
-            }
-            if(_.findIndex(conversation,(o)=>{return o.id==tweet.id})===-1)
-                conversation.push(tweet);
-            return res.json(ResponseUtils.responseSuccess({ conversation }));
-        })
-    else {
-        let conversation = [tweet];
-        return res.json(ResponseUtils.responseSuccess({ conversation }));
+    let _id = null;
+    if (reply_to_status_id) {
+        _id = reply_to_status_id;
     }
+    else {
+        _id = tweet.id;
+    }
+    //console.log(reply_to_status_id);
+    Conversation.find({ _id: _id }, (err, result) => {
+        let conversation = []
+        if (err) {
+            return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_RETRIEVAL_ERROR, err));
+        }
+
+        if (!result || result.length == 0) {
+            conversation = [];
+        }
+        else {
+            doc = result[0];
+            conversation = doc.conversation;
+        }
+        if (_.findIndex(conversation, (o) => { return o.id == tweet.id }) === -1)
+            conversation.push(tweet);
+        return res.json(ResponseUtils.responseSuccess({ conversation }));
+    })
     /*twitter.statuses('show', { id: tweetId }, accessToken, accessTokenSecret, (err, data, result) => {
         if (err) {
             return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_RETRIEVAL_ERROR, err));
@@ -122,16 +124,15 @@ const sendTweet = (req, res) => {
         if (err) {
             return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_REPLY_ERROR, err));
         }
-
         //console.log(JSON.stringify(result));
         let tweet = MapperUtils.tweetMapper(data);
         //console.log(data,tweet);
         conversation.push(tweet);
-        Conversation.findOneAndUpdate({_id:tweetId},{$set:{conversation:conversation}},{upsert:true,new:true},(err,resp)=> {
-            if(err){
+        Conversation.findOneAndUpdate({ _id: tweetId }, { $set: { conversation: conversation } }, { upsert: true, new: true }, (err, resp) => {
+            if (err) {
                 return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_REPLY_ERROR, err));
             }
-            res.json(ResponseUtils.responseSuccess({resp}));
+            res.json(ResponseUtils.responseSuccess({ resp }));
         })
     })
 }
