@@ -75,7 +75,7 @@ const login = (req, res) => {
 
         req.login(user, { session: false }, (err) => {
             if (err) {
-                return res.status(200).json({ success: false, message: 'Incorrect Email ID or password.' });
+                return res.status(200).json({ status: false, message: 'Incorrect Email ID or password.' });
             }
             const { password, salt, ...rest } = user;
             const session_id = uuid();
@@ -84,11 +84,11 @@ const login = (req, res) => {
                 .setToken(user._id, session_id)
                 .then(() => {
                     const token = jwt.sign({ sub: user._id, session_id, email: user.email, scope: 'user' }, config.jwt_encrypt_key, { expiresIn: '1d' });
-                    return res.status(200).json({ success: true, message: 'Login successful', data:{detail: rest, token} });
+                    return res.status(200).json({ status: true, message: 'Login successful', data:{detail: rest, token} });
                 })
                 .catch((error) => {
                     console.log(error);
-                    return res.status(500).json({ success: false, message: 'Something went wrong!' });
+                    return res.status(500).json({ status: false, message: 'Something went wrong!' });
                 });
         });
     })(req, res);

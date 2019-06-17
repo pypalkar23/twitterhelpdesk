@@ -62,12 +62,12 @@ export class LoginComponent implements OnInit {
     if(this.validateRegister()){
       this.disableRegister = true;
       this.userService.register({username:this.username,password:this.registerPassword,email:this.registerEmail}).subscribe((resp)=>{
-        if(resp.success){
+        if(resp.status){
           this.toastrService.success('You have registered successfully!','Registered');
           this.resetRegister();
         }
         else{
-          this.toastrService.error(this.errorcodes[resp.message],"Error");
+          this.toastrService.error(this.errorcodes['GENERIC'],"Error");
           this.disableRegister =false;
         }
       })
@@ -79,12 +79,15 @@ export class LoginComponent implements OnInit {
     if (this.validateLogin()) {
       this.disableLogin = true;
       this.userService.login({ email: this.email, password: this.password }).subscribe((resp) => {
-        if (resp.success){
+        if (resp.status){
           this.userService.setAuthToken(resp.data.token, resp.data.detail);
           this.disableLogin = false;
           this.router.navigate(["/connect"]);
         }
         else{
+          if(this.errorcodes[resp.message])
+          this.toastrService.error(this.errorcodes[resp.message],"Error");
+          else
           this.toastrService.error(this.errorcodes[resp.message],"Error");
           this.disableLogin=false;
         }

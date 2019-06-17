@@ -1,18 +1,18 @@
 module.exports = {
     port: 5000,
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     mongo: {
-        uri: 'mongodb://localhost:27017/helpdesk'
+        uri: 'mongodb://0.0.0.0:27017/helpdesk'
     },
     redis: {
-        host: '127.0.0.1',
+        host: '0.0.0.0',
         port: 6379,
         dbIndex: 2
     },
     twitterAuth:{
-        consumerKey:'Xi2fZkrX41kak3S0WsZC6jm5L',
-        consumerSecret:'Brbi7D2dVvH2o1UZSJUFGFiYfA4tR3DWyLayUwEfZDUheYs6XD',
-        callback:'http://127.0.0.1:4200/callback'
+        consumerKey:'bNML5gU932vicnxt54gtokzrF',
+        consumerSecret:'GSjN09k3P1Q2wW8P5olaVR2cb7RnmwXMZUG6hTseUdyg031yOG',
+        callback:'http://159.65.156.153:5000/callback'
     },
     jwt_encrypt_key: 'dd29b8cb089a56606fca480e137c27c4'
 };
