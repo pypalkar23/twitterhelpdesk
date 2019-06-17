@@ -51,7 +51,66 @@ textarea:focus,textarea:hover{
     
 }
 
+.messageDiv{
+    min-width:98%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 0.5rem;
+}
 
+.message-wrapper{
+    position: relative;
+    display: inline-block;
+    padding-right:2%;
+    max-width:70%;
+    min-width:150px;
+    color:#000;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left:1%;
+}
 
+.message-wrapper::after{
+    content:"";
+    clear: both;
+}
 
+.left-message{
+    position:relative;
+    background: #e9be8669;
+    float:left;
+    clear:both;
+}
 
+.right-message{
+    position: relative;
+    float:right;
+    clear: both;
+    background: #dee78669;
+}
+
+.user_name{
+    font-size:0.9rem;
+    font-weight: bold;
+    color:#7c7373;
+}
+
+.twitter_handle{
+    font-size:0.8rem;
+    font-weight: bold;
+    color:#b4a9a9;
+}
+
+.message{
+    min-height: 1.2rem;
+    max-height: 1.2rem;
+    height:1.2rem;
+    width: 80%;
+    font-size:0.9rem;
+}
+
+.timestamp{
+    font-size:0.8rem;
+    color:#b4a9a9;
+}

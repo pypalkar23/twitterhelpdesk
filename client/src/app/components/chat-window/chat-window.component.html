@@ -1,10 +1,20 @@
 <div>
-  <div class="conversation-window">
-    <div *ngFor="let msg of conversation">
-      <p>
-        {{msg.screen_name}}
-        {{msg.text}}
-      </p>
+  <div class="conversation-window" #scroller>
+    <div *ngFor="let msg of conversation" class="messageDiv">
+      <div class="another-wrapper">
+        <div class="message-wrapper" [ngClass]="(isUsersMessage(msg))?'right-message':'left-message'">
+          <div>
+            <span class="user_name">{{msg.user_name}}</span>&nbsp;<span
+              class="twitter_handle">@{{msg.screen_name}}</span>
+          </div>
+          <div>
+            <span class="message">{{msg.text}}</span>
+          </div>
+          <div class="timestamp-wrapper">
+              <span class="timestamp pull-right">{{msg.timestamp|dateFormat}}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="message-box">

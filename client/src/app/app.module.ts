@@ -17,6 +17,7 @@ import {ToastrModule} from 'ngx-toastr';
 import { TweetListComponent } from './components/tweet-list/tweet-list.component';
 import { ChatWindowComponent } from './components/chat-window/chat-window.component';
 import { LoginGuard } from './guards/login.guard';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { LoginGuard } from './guards/login.guard';
     HelpdeskComponent,
     TwitterCallbackComponent,
     TweetListComponent,
-    ChatWindowComponent
+    ChatWindowComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,

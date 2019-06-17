@@ -1,2 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/ngx-toastr/toastr.css"
+@import "../node_modules/ngx-toastr/toastr.css";
+
+@font-face{
+    font-family:Roboto;
+    src:url("./assets/fonts/Roboto/Roboto-Regular.otf") font("opentype");
+}
+
+
+@font-face{
+    font-family:Roboto;
+    src: url("./assets/fonts/Roboto/Roboto-Light.otf") font("opentype");
+    font-weight:100;
+}
+
+@font-face{
+    font-family:Roboto;
+    src: url("./assets/fonts/Roboto/Roboto-Thin.otf") font("opentype");
+    font-weight:200;
+}
+
+@font-face{
+    font-family:Roboto;
+    src: url("./assets/fonts/Roboto/Roboto-Medium.otf") font("opentype");
+    font-weight:300;
+}
+
+@font-face{
+    font-family:Roboto;
+    src: url("./assets/fonts/Roboto/Roboto-Bold.otf") font("opentype");
+    font-weight:400;
+}
