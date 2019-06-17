@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewChecked } from '@ang
 import { ConversationService } from '../../services/conversation.service';
 import { Subject } from 'rxjs';
 import { UserService } from '../../services/user.service'
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-chat-window',
   templateUrl: './chat-window.component.html',
@@ -13,10 +13,11 @@ export class ChatWindowComponent implements OnInit, AfterViewChecked {
   userId: string;
   private _unsubscriber: Subject<void> = new Subject<void>();
   conversation: any = [];
-  constructor(private conversationService: ConversationService, private userService: UserService) { }
+  constructor(private conversationService: ConversationService, private userService: UserService,private toastrService: ToastrService) { }
   tweet_id: string;
   replyMessage: String;
-
+  screen_name:String;
+  replyDisabled:boolean=false;
   ngOnInit() {
     this.userId = this.userService.getTwitterUser().id_str;
     this.conversationService.tweet.subscribe((tweet) => {
@@ -27,6 +28,7 @@ export class ChatWindowComponent implements OnInit, AfterViewChecked {
             //console.log(this.conversation);
             if (this.conversation && this.conversation.length != 0) {
               this.tweet_id = this.conversation[0].id
+              this.screen_name = this.conversation[0].screen_name;
             }
             this.scrollToBottom();
           }
@@ -40,10 +42,21 @@ export class ChatWindowComponent implements OnInit, AfterViewChecked {
 
   sendReply() {
     if (this.replyMessage.length != 0) {
+      this.replyDisabled=true;
+      if(!this.replyMessage.startsWith("@")){
+        this.replyMessage = "@"+this.screen_name+" "+this.replyMessage;
+      }
       this.conversationService.postTweet({ id: this.tweet_id, status: this.replyMessage, conversation: this.conversation }).subscribe((resp) => {
-        let temp = resp.data.resp.conversation[resp.data.resp.conversation.length - 1];
-        console.log(temp);
-        this.conversation.push(temp);
+        if(resp.status){
+          let temp = resp.data.resp.conversation[resp.data.resp.conversation.length - 1];
+          //console.log(temp);
+          this.conversation.push(temp);
+          this.replyMessage='';
+        }
+        else{
+          this.toastrService.error("Error Occured while sending the reply","Error");
+        }
+        this.replyDisabled=false;
       });
     }
   }

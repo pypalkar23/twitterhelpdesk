@@ -23,7 +23,7 @@
         <textarea [(ngModel)]="replyMessage" name="replyMessage" placeholder="Type your reply here..."></textarea>
       </div>
       <div class="col-lg-2 col-md-2 button-wrapper">
-        <button type="button" class="btn btn-primary btn-block" (click)="sendReply()">Reply</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="sendReply()" [disabled]="replyDisabled">Reply</button>
       </div>
     </div>
   </div>
