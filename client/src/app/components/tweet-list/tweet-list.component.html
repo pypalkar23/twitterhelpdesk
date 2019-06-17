@@ -1,4 +1,4 @@
-<div class="list-wrapper">
+<div class="list-wrapper" id="tweet_list">
   <div>
     <div class="tweet-wrapper"  [ngClass]="isSelected(tweet)?'selectedTweet':''" *ngFor="let tweet of tweets" (click)="getConversation(tweet)">
       <p><span class="user_name">{{tweet.user_name}}</span>&nbsp;&nbsp;<span class="screen_name">@{{tweet.screen_name}}</span></p>

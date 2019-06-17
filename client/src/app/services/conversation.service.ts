@@ -24,8 +24,11 @@ export class ConversationService {
     this.tweet.next(value);
   }
 
-  getTweets() {
-    return this.http.post<any>(this.GET_TWEETS_API,{});
+  getTweets(max_id=null) {
+    let data={};
+    if(max_id)
+      data['max_id']=max_id;
+    return this.http.post<any>(this.GET_TWEETS_API,data);
   }
 
   getTweet(data) {

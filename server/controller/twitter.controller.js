@@ -58,8 +58,17 @@ const getTweets = (req, res) => {
         if (err) {
             return res.json(ResponseUtils.responseMessage(false, errorCodes.TWEET_LIST_ERROR, err));
         }
-        //console.log(result);
-        res.json(ResponseUtils.responseSuccess(MapperUtils.tweetsMapper(data)));
+        //console.log(max_id);
+        //console.log(data.length);
+        if(max_id && data.length>=1){
+            //console.log("in max_id check");
+            data=data.splice(1,1);
+        }
+
+        //console.log(data.length);
+        if(data.length==0)
+            return res.json(ResponseUtils.responseSuccess([]));
+        return res.json(ResponseUtils.responseSuccess(MapperUtils.tweetsMapper(data)));
     })
 }
 
