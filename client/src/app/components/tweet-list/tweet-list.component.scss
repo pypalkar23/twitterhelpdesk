@@ -1,0 +1,49 @@
+.list-wrapper{
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height:90vh;
+    max-height:90vh;
+    overflow-y: scroll;
+}
+
+.tweet-wrapper{
+    width: 95%;
+    margin-left:auto;
+    margin-right: auto;
+    border: 1px solid #7c777744;
+    border-block: padding;
+    margin-bottom: 10px;
+    box-shadow: 1px 2px #8a818144;
+    .screen_name{
+        font-size:0.8rem;
+        font-weight: bold;
+        color:#b4a9a9;
+    }
+
+    .user_name{
+        font-size:0.9rem;
+        font-weight: bold;
+        color:#7c7373;
+    }
+
+    .tweet_text{
+        min-height: 1.2rem;
+        max-height: 1.2rem;
+        height:1.2rem;
+        width: 80%;
+        font-size:0.9rem;
+        color:#554f4f;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .screen_name,.user_name,.tweet_text{
+        padding-left: 5%;
+    }
+}
+
+.selectedTweet{
+    background: #bbd1ecce; 
+}

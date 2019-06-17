@@ -8,24 +8,29 @@ import { ConversationService } from '../../services/conversation.service';
 })
 export class TweetListComponent implements OnInit {
 
-  constructor(private conversationService:ConversationService) { }
-  tweets=[];
+  constructor(private conversationService: ConversationService) { }
+  tweets = [];
+  currentTweet: any;
   ngOnInit() {
-    this.conversationService.getTweets().subscribe((resp)=>{
-      if(resp.status){
-         let tempTweets= resp.data;
-         tempTweets.forEach(tweet => {
+    this.conversationService.getTweets().subscribe((resp) => {
+      if (resp.status) {
+        let tempTweets = resp.data;
+        tempTweets.forEach(tweet => {
           this.tweets.push(tweet);
-         });
-         console.log(this.tweets);
+        });
+        console.log(this.tweets);
       }
     })
   }
 
-  getConversation(tweet){
+  getConversation(tweet) {
+    this.currentTweet = tweet;
     this.conversationService.setTweet(tweet);
   }
 
-  
+  isSelected(tweet) {
+    if (this.currentTweet)
+      return tweet.id == this.currentTweet.id;
+  }
 
 }
