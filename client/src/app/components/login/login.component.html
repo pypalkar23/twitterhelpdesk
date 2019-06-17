@@ -22,10 +22,6 @@
                  name="password">
                 <small class="errorMessage" class="form-text text-muted">{{passwordError}}</small>
               </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
               <div class="button-wrapper">
                 <button type="button" class="btn btn-primary" (click)="loginUser()" [disabled]=disableLogin>Login</button>
               </div>
@@ -52,10 +48,6 @@
                 <input type="password" [(ngModel)]="registerPassword" class="form-control" id="exampleInputPassword1" placeholder="Password"
                 name="registerPassword">
                 <small class="errorMessage" class="form-text text-muted">{{registerPasswordError}}</small>
-              </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div>
               <div class="button-wrapper">
                 <button type="button" class="btn btn-primary" (click)="registerUser()" [disabled]="disableRegister">Register</button>
