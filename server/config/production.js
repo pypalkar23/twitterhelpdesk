@@ -10,8 +10,8 @@ module.exports = {
         dbIndex: 2
     },
     twitterAuth:{
-        consumerKey:'bNML5gU932vicnxt54gtokzrF',
-        consumerSecret:'GSjN09k3P1Q2wW8P5olaVR2cb7RnmwXMZUG6hTseUdyg031yOG',
+        consumerKey:'#########',
+        consumerSecret:'###########',
         callback:'http://159.65.156.153:5000/callback'
     },
     jwt_encrypt_key: 'dd29b8cb089a56606fca480e137c27c4'
