@@ -1,6 +1,7 @@
 # TWITTER_HELPDESK
 
-This repository contains code which for TWITTER_HELPDESK POC
+-This repository contains code which for TWITTER_HELPDESK POC.
+-This application allows you to view the tweets targeted at you and allows you you to reply to them directly from the webapp.
 
 ## FEATURES
 - Front end is built in Angular8 & Backend is built in NodeJS(Express)
