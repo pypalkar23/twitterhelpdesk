@@ -1,6 +1,7 @@
 # TWITTER_HELPDESK
 
-This repository contains code which for TWITTER_HELPDESK POC
+This repository contains code which for TWITTER_HELPDESK POC which I made to work with twitter apis && it's
+authentication flow
 
 ## FEATURES
 - Front end is built in Angular8 & Backend is built in NodeJS(Express)
@@ -8,3 +9,9 @@ This repository contains code which for TWITTER_HELPDESK POC
 - Uses Redis for session management
 - User side authentication is implemented using JWT Authentication
 - From inside the App user can authenticate himself to twitter using the 3 Legged OAuth Flow which is        required by twitter
+
+## Instruction to run the project
+- Make sure MongoDB and Redis is installed & both the instances are running
+- then go to the project directory and run below commands
+- cd client && npm install && npm run build 
+- cd ../server && npm install && node app.js
