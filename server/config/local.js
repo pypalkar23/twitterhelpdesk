@@ -11,8 +11,8 @@ module.exports = {
     },
 
     twitterAuth:{
-        consumerKey:'bNML5gU932vicnxt54gtokzrF',
-        consumerSecret:'GSjN09k3P1Q2wW8P5olaVR2cb7RnmwXMZUG6hTseUdyg031yOG',
+        consumerKey:'#######',
+        consumerSecret:'#######',
         callback:'http://0.0.0.0:5000/callback'
     },
     jwt_encrypt_key: '0f225be8b644498c25dd421a12e7cbeb'

@@ -1,7 +1,7 @@
 # TWITTER_HELPDESK
 
-This repository contains code which for TWITTER_HELPDESK POC which I made to work with twitter apis && it's
-authentication flow
+- This repository contains code which for TWITTER_HELPDESK POC.
+- This application allows you to view the tweets targeted at you and allows you you to reply to them directly from the webapp.
 
 ## FEATURES
 - Front end is built in Angular8 & Backend is built in NodeJS(Express)
@@ -15,3 +15,5 @@ authentication flow
 - then go to the project directory and run below commands
 - cd client && npm install && npm run build 
 - cd ../server && npm install && node app.js
+
+*** Wont work on local as the twitter app credentials are kept private and added directly to the production environment
