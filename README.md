@@ -17,3 +17,11 @@
 - cd ../server && npm install && node app.js
 
 *** Wont work on local as the twitter app credentials are kept private and added directly to the production environment
+
+## Workflow
+- Register on the webapp
+- Then Login using your credentials which you have used for registeration
+- Click on connect to twitter button
+- Sign in using your twitter credentials a messenger window will open
+- Select a Tweet to reply to from the tweet list on the left side and reply to it. The reply should be visible to the user who sent you the original message
+
